@@ -42,20 +42,20 @@ maven {
 <dependency>
   <groupId>fun.felipe</groupId>
   <artifactId>Updater</artifactId>
-  <version>1.0-RELEASE</version>
+  <version>1.0.1-RELEASE</version>
 </dependency>
 ```
 
 **Gradle (Groovy)**:
 
 ```groovy
-implementation "fun.felipe:Updater:1.0-RELEASE"
+implementation "fun.felipe:Updater:1.0.1-RELEASE"
 ```
 
 **Gradle (Kotlin)**:
 
 ```kotlin
-implementation("fun.felipe:Updater:1.0-RELEASE")
+implementation("fun.felipe:Updater:1.0.1-RELEASE")
 ```
 
 ### Usage/Example
