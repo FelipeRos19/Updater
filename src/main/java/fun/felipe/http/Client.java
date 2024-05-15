@@ -31,8 +31,16 @@ public class Client {
                 .build();
 
         try (Response response = this.client.newCall(request).execute()) {
-            if (response.body() == null) return Optional.empty();
-            return Optional.of(this.gson.fromJson(response.body().string(), ProjectModel.class));
+            if (response.body() == null) {
+                response.close();
+                return Optional.empty();
+            }
+
+            ProjectModel projectResult = this.gson.fromJson(response.body().string(), ProjectModel.class);
+            response.body().close();
+            response.close();
+
+            return Optional.of(projectResult);
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
@@ -44,8 +52,16 @@ public class Client {
                 .build();
 
         try (Response response = this.client.newCall(request).execute()) {
-            if (response.body() == null) return Optional.empty();
-            return Optional.of(this.gson.fromJson(response.body().string(), VersionModel.class));
+            if (response.body() == null) {
+                response.close();
+                return Optional.empty();
+            }
+
+            VersionModel versionResult = this.gson.fromJson(response.body().string(), VersionModel.class);
+            response.body().close();
+            response.close();
+
+            return Optional.of(versionResult);
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
