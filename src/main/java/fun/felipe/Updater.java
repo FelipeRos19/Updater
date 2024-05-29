@@ -21,6 +21,7 @@ public class Updater {
             throw new RuntimeException("Version not Found!");
 
         String formattedVersion = project.get().title() + " " + pluginVersion;
+        client.close();
         return version.get().name().equals(formattedVersion);
     }
 }

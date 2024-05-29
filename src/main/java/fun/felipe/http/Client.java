@@ -10,7 +10,7 @@ import okhttp3.Response;
 import java.io.IOException;
 import java.util.Optional;
 
-public class Client {
+public class Client implements AutoCloseable {
     private final OkHttpClient client;
     private final Gson gson;
 
@@ -64,6 +64,18 @@ public class Client {
             return Optional.of(versionResult);
         } catch (IOException exception) {
             throw new RuntimeException(exception);
+        }
+    }
+
+    @Override
+    public void close() {
+        this.client.dispatcher().executorService().shutdown();
+        this.client.connectionPool().evictAll();
+        if (this.client.cache() == null) return;
+        try {
+            this.client.cache().close();
+        } catch (IOException exception) {
+            exception.printStackTrace(System.err);
         }
     }
 }
