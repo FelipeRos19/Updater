@@ -1,6 +1,7 @@
 # Updater
 
 Is a library that monitors whether there is an update for the project using the modrinth API.
+It works using version pattern: "MAJOR.MINOR.PATCH" practical example: "1.3.0",  if your plugin does not adapt to this model, please open an issue!
 
 ### Requirements
 - Java 17 or higher
